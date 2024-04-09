@@ -1,6 +1,5 @@
-# SmartCockpit SDK使用说明
 ### 1.添加蓝牙所需权限
-可参考Android官方文档，https://developer.android.com/guide/topics/connectivity/bluetooth/permissions
+可参考Android官方文档，添加[蓝牙所需权限](https://developer.android.com/guide/topics/connectivity/bluetooth/permissions)
 
 Android API 23~30 需要ACCESS_COARSE_LOCATION 或者 ACCESS_FINE_LOCATION权限
 ```
