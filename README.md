@@ -1,5 +1,21 @@
-### 1.添加蓝牙所需权限
-可参考Android官方文档，添加[蓝牙所需权限](https://developer.android.com/guide/topics/connectivity/bluetooth/permissions)
+### 1.添加SDK library和SO文件
+将您的 SDK jar 文件和 SO 文件添加到您的项目中。
+
+![](https://chenxuewei-ihealth.github.io/ihealthlabs-sdk-docs/assets/images/guide_android_2-0f4717d053bb80d111337fc80777a006.png)
+
+在build.gradle中添加以下内容：
+```
+android {
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+}
+```
+
+### 2.添加蓝牙所需权限
+可参考Android官方文档，https://developer.android.com/guide/topics/connectivity/bluetooth/permissions
 
 Android API 23~30 需要ACCESS_COARSE_LOCATION 或者 ACCESS_FINE_LOCATION权限
 ```
@@ -15,7 +31,7 @@ Android API 31~34 需要蓝牙和附近设备权限
 <uses-permission android:name="android.permission.BLUETOOTH_ADVERTISE" />
 <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
 ```
-### 2.初始化SDK
+### 3.初始化SDK
 ```java
 public class BaseApplication extends Application {
     
@@ -27,7 +43,7 @@ public class BaseApplication extends Application {
 }
 ```
 
-### 3.注册扫连监听回调
+### 4.注册扫连监听回调
 ```java
 int callbackId = iHealthDevicesManager.getInstance().registerClientCallback(new iHealthDevicesCallback() {
     
@@ -71,22 +87,22 @@ iHealthDevicesManager.getInstance().addCallbackFilterForDeviceType(mClientCallba
 iHealthDevicesManager.getInstance().addCallbackFilterForAddress(int clientCallbackId, String... macs)
 ```
 
-### 4.蓝牙扫描设备
+### 5.蓝牙扫描设备
 ```java
 iHealthDevicesManager.getInstance().startDiscovery(DiscoveryTypeEnum.SMART_COCKPIT);
 ```
 
-### 5.蓝牙连接设备
+### 6.蓝牙连接设备
 ```java
 iHealthDevicesManager.getInstance().connectDevice(mDeviceMac, iHealthDevicesManager.TYPE_SMART_COCKPIT);
 ```
 
-### 6.获取设备对象
+### 7.获取设备对象
 ```java
 SmartCockpitControl mSmartCockpitControl = iHealthDevicesManager.getInstance().getSmartCockpitControl(mDeviceMac);
 ```
 
-### 7.设备状态上报
+### 8.设备状态上报
 ```java
 private iHealthDevicesCallback miHealthDevicesCallback = new iHealthDevicesCallback() {
     @Override
@@ -104,7 +120,7 @@ private iHealthDevicesCallback miHealthDevicesCallback = new iHealthDevicesCallb
 }
 ```
 
-### 8.设备主动上报实时测量数据（除心电）
+### 9.设备主动上报实时测量数据（除心电）
 ```java
 private iHealthDevicesCallback miHealthDevicesCallback = new iHealthDevicesCallback() {
     @Override
@@ -134,7 +150,7 @@ private iHealthDevicesCallback miHealthDevicesCallback = new iHealthDevicesCallb
 };
 ```
 
-### 9.设备主动上报实时ECG数据
+### 10.设备主动上报实时ECG数据
 ```java
 private iHealthDevicesCallback miHealthDevicesCallback = new iHealthDevicesCallback() {
     @Override
