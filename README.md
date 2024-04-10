@@ -120,7 +120,7 @@ private iHealthDevicesCallback miHealthDevicesCallback = new iHealthDevicesCallb
 }
 ```
 
-### 9.设备主动上报实时测量数据（除心电）
+### 9.设备主动上报实时测量数据
 ```java
 private iHealthDevicesCallback miHealthDevicesCallback = new iHealthDevicesCallback() {
     @Override
@@ -142,30 +142,10 @@ private iHealthDevicesCallback miHealthDevicesCallback = new iHealthDevicesCallb
                 int sys = obj.getInt(SmartCockpitProfile.SYS);
                 //血压低压值
                 int dia = obj.getInt(SmartCockpitProfile.DIA);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-    } 
-};
-```
-
-### 10.设备主动上报实时ECG数据
-```java
-private iHealthDevicesCallback miHealthDevicesCallback = new iHealthDevicesCallback() {
-    @Override
-    public void onDeviceNotify(String mac, String deviceType, String action, String message) {
-        if (SmartCockpitProfile.ACTION_REAL_TIME_ECG_DATA.equals(action)) {
-            try {
-                JSONObject obj = new JSONObject(message);
-                //包序号
-                int packageIndex = obj.getInt(SmartCockpitProfile.PACKAGE_INDEX);
-                //ECG数据数组
-                JSONArray ecgArray = obj.getJSONArray(SmartCockpitProfile.ECG_DATA_ARRAY);
-                for (int i = 0; i < ecgArray.length(); i++) {
-                    int ecgData = ecgArray.getInt(i);
-                }
-                
+                //ECG
+                int ecg = obj.getInt(SmartCockpitProfile.ECG);
+                //压力指数
+                int pressureLevel = obj.getInt(SmartCockpitProfile.PRESSURE_LEVEL);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
