@@ -112,6 +112,8 @@ private iHealthDevicesCallback miHealthDevicesCallback = new iHealthDevicesCallb
                 JSONObject obj = new JSONObject(message);
                 //佩戴状态(0:未佩戴，1佩戴)
                 int wearingStatus = obj.getInt(SmartCockpitProfile.WEARING_STATUS);
+                //电极片状态 (0:电极片脱落 1:电极片接触)
+                int electrodePadStatus = obj.getInt(SmartCockpitProfile.ELECTRODE_PAD_STATUS);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -128,24 +130,31 @@ private iHealthDevicesCallback miHealthDevicesCallback = new iHealthDevicesCallb
         if (SmartCockpitProfile.ACTION_REAL_TIME_DATA.equals(action)) {
             try {
                 JSONObject obj = new JSONObject(message);
-                //包序号
-                int packageIndex = obj.getInt(SmartCockpitProfile.PACKAGE_INDEX);
                 //心率值(bpm)
                 int heartRate = obj.getInt(SmartCockpitProfile.HEART_RATE);
                 //血氧值(%)
                 int bloodOxygen = obj.getInt(SmartCockpitProfile.BLOOD_OXYGEN);
                 //体温(℃)
                 int bodyTemperature = obj.getInt(SmartCockpitProfile.BODY_TEMPERATURE);
-                //HRV
+                //HRV(ms)
                 int hrv = obj.getInt(SmartCockpitProfile.HRV);
-                //血压高压值
+                //血压高压值(mmHg)
                 int sys = obj.getInt(SmartCockpitProfile.SYS);
-                //血压低压值
+                //血压低压值(mmHg)
                 int dia = obj.getInt(SmartCockpitProfile.DIA);
-                //ECG
+                //光电容积脉搏波(m/s)
+                int ppg = obj.getInt(SmartCockpitProfile.PPG);
+                //心电 0：正常 1:心律不齐
                 int ecg = obj.getInt(SmartCockpitProfile.ECG);
-                //压力指数
-                int pressureLevel = obj.getInt(SmartCockpitProfile.PRESSURE_LEVEL);
+                //呼吸率 0:正常
+                int breathingRate = obj.getInt(SmartCockpitProfile.BREATHING_RATE);
+                //压力指数 0:正常
+                int pressureIndex = obj.getInt(SmartCockpitProfile.PRESSURE_INDEX);
+                //疲劳指数 0:正常
+                int fatigueIndex = obj.getInt(SmartCockpitProfile.FATIGUE_INDEX);
+                //血管弹性程度 0：正常 1：偏硬
+                int bloodVesselElasticity = obj.getInt(SmartCockpitProfile.BLOOD_VESSEL_ELASTICITY);
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
