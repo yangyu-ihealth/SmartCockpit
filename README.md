@@ -112,8 +112,6 @@ private iHealthDevicesCallback miHealthDevicesCallback = new iHealthDevicesCallb
                 JSONObject obj = new JSONObject(message);
                 //佩戴状态(0:未佩戴，1佩戴)
                 int wearingStatus = obj.getInt(SmartCockpitProfile.WEARING_STATUS);
-                //电极片状态 (0:电极片脱落 1:电极片接触)
-                int electrodePadStatus = obj.getInt(SmartCockpitProfile.ELECTRODE_PAD_STATUS);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -134,8 +132,6 @@ private iHealthDevicesCallback miHealthDevicesCallback = new iHealthDevicesCallb
                 int heartRate = obj.getInt(SmartCockpitProfile.HEART_RATE);
                 //血氧值(%)
                 int bloodOxygen = obj.getInt(SmartCockpitProfile.BLOOD_OXYGEN);
-                //体温(℃)
-                int bodyTemperature = obj.getInt(SmartCockpitProfile.BODY_TEMPERATURE);
                 //HRV(ms)
                 int hrv = obj.getInt(SmartCockpitProfile.HRV);
                 //血压高压值(mmHg)
