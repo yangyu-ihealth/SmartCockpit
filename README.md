@@ -128,27 +128,27 @@ private iHealthDevicesCallback miHealthDevicesCallback = new iHealthDevicesCallb
         if (SmartCockpitProfile.ACTION_REAL_TIME_DATA.equals(action)) {
             try {
                 JSONObject obj = new JSONObject(message);
-                //心率值(bpm)
+                //心率值(bpm), SmartCockpitProfile.DEFAULT_NOT_DETECTED(-1)表示未检测到
                 int heartRate = obj.getInt(SmartCockpitProfile.HEART_RATE);
-                //血氧值(%)
+                //血氧值(%), SmartCockpitProfile.DEFAULT_NOT_DETECTED(-1)表示未检测到
                 int bloodOxygen = obj.getInt(SmartCockpitProfile.BLOOD_OXYGEN);
-                //HRV(ms)
+                //HRV(ms), SmartCockpitProfile.DEFAULT_NOT_DETECTED(-1)表示未检测到
                 int hrv = obj.getInt(SmartCockpitProfile.HRV);
-                //血压高压值(mmHg)
+                //血压高压值(mmHg), SmartCockpitProfile.DEFAULT_NOT_DETECTED(-1)表示未检测到
                 int sys = obj.getInt(SmartCockpitProfile.SYS);
-                //血压低压值(mmHg)
+                //血压低压值(mmHg), SmartCockpitProfile.DEFAULT_NOT_DETECTED(-1)表示未检测到
                 int dia = obj.getInt(SmartCockpitProfile.DIA);
-                //光电容积脉搏波(m/s)
+                //光电容积脉搏波(m/s), SmartCockpitProfile.DEFAULT_NOT_DETECTED(-1)表示未检测到
                 int ppg = obj.getInt(SmartCockpitProfile.PPG);
-                //心电 0：正常 1:心律不齐
+                //心电 0：正常 1:心律不齐, SmartCockpitProfile.DEFAULT_NOT_DETECTED(-1)表示未检测到
                 int ecg = obj.getInt(SmartCockpitProfile.ECG);
-                //呼吸率 0:正常
+                //呼吸率 0:正常, SmartCockpitProfile.DEFAULT_NOT_DETECTED(-1)表示未检测到
                 int breathingRate = obj.getInt(SmartCockpitProfile.BREATHING_RATE);
-                //压力指数 0:正常
+                //压力指数 0:正常, SmartCockpitProfile.DEFAULT_NOT_DETECTED(-1)表示未检测到
                 int pressureIndex = obj.getInt(SmartCockpitProfile.PRESSURE_INDEX);
-                //疲劳指数 0:正常
+                //疲劳指数 0:正常, SmartCockpitProfile.DEFAULT_NOT_DETECTED(-1)表示未检测到
                 int fatigueIndex = obj.getInt(SmartCockpitProfile.FATIGUE_INDEX);
-                //血管弹性程度 0：正常 1：偏硬
+                //血管弹性程度 0：正常 1：偏硬, SmartCockpitProfile.DEFAULT_NOT_DETECTED(-1)表示未检测到
                 int bloodVesselElasticity = obj.getInt(SmartCockpitProfile.BLOOD_VESSEL_ELASTICITY);
 
             } catch (JSONException e) {
