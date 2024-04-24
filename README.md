@@ -53,7 +53,15 @@ int callbackId = iHealthDevicesManager.getInstance().registerClientCallback(new 
     }
 
     @Override
-    public void onDeviceConnectionStateChange(String mac, String deviceType, int status, int errorID, Map manufactorData) { }
+    public void onDeviceConnectionStateChange(String mac, String deviceType, int status, int errorID, Map manufactorData) {
+        if(status == iHealthDevicesManager.DEVICE_STATE_CONNECTING){
+            Log.i("", "Device is connecting!");
+        }else if(status == iHealthDevicesManager.DEVICE_STATE_CONNECTED){
+            Log.i("", "Device is connected!");
+        }else if(status == iHealthDevicesManager.DEVICE_STATE_CONNECTIONFAIL){
+            Log.i("", "Device connect failed!");
+        }
+     }
 
     @Override
     public void onScanError(String reason, long latency) { }
