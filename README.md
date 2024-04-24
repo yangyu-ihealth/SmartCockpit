@@ -150,6 +150,8 @@ private iHealthDevicesCallback miHealthDevicesCallback = new iHealthDevicesCallb
                 int ppg = obj.getInt(SmartCockpitProfile.PPG);
                 //心电 0：正常 1:心律不齐, SmartCockpitProfile.DEFAULT_NOT_DETECTED(-1)表示未检测到
                 int ecg = obj.getInt(SmartCockpitProfile.ECG);
+                //心电平均心率, SmartCockpitProfile.DEFAULT_NOT_DETECTED(-1)表示未检测到
+                int ecgHeartRateAvg = obj.getInt(SmartCockpitProfile.ECG_HEART_RATE_AVG);
                 //呼吸率 0:正常, SmartCockpitProfile.DEFAULT_NOT_DETECTED(-1)表示未检测到
                 int breathingRate = obj.getInt(SmartCockpitProfile.BREATHING_RATE);
                 //压力指数 0:正常, SmartCockpitProfile.DEFAULT_NOT_DETECTED(-1)表示未检测到
