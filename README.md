@@ -120,6 +120,8 @@ private iHealthDevicesCallback miHealthDevicesCallback = new iHealthDevicesCallb
                 JSONObject obj = new JSONObject(message);
                 //佩戴状态(0:未佩戴，1佩戴)
                 int wearingStatus = obj.getInt(SmartCockpitProfile.WEARING_STATUS);
+                //设备电量(0:正常，1低电，停止测量)
+                int battery = obj.getInt(SmartCockpitProfile.DEVICE_BATTERY);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
