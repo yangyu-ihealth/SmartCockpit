@@ -148,19 +148,19 @@ private iHealthDevicesCallback miHealthDevicesCallback = new iHealthDevicesCallb
                 int sys = obj.getInt(SmartCockpitProfile.SYS);
                 //血压低压值(mmHg), SmartCockpitProfile.DEFAULT_NOT_DETECTED(-1)表示未检测到
                 int dia = obj.getInt(SmartCockpitProfile.DIA);
-                //光电容积脉搏波(m/s), SmartCockpitProfile.DEFAULT_NOT_DETECTED(-1)表示未检测到
+                //光电容积脉搏波数值, SmartCockpitProfile.DEFAULT_NOT_DETECTED(-1)表示未检测到
                 int ppg = obj.getInt(SmartCockpitProfile.PPG);
-                //心电 0：正常 1:心律不齐, SmartCockpitProfile.DEFAULT_NOT_DETECTED(-1)表示未检测到
+                //心电 0：正常 1:心动过速 2:心动过缓,  SmartCockpitProfile.DEFAULT_NOT_DETECTED(-1)表示未检测到
                 int ecg = obj.getInt(SmartCockpitProfile.ECG);
                 //心电平均心率, SmartCockpitProfile.DEFAULT_NOT_DETECTED(-1)表示未检测到
                 int ecgHeartRateAvg = obj.getInt(SmartCockpitProfile.ECG_HEART_RATE_AVG);
-                //呼吸率 0:正常, SmartCockpitProfile.DEFAULT_NOT_DETECTED(-1)表示未检测到
+                //呼吸率数值, SmartCockpitProfile.DEFAULT_NOT_DETECTED(-1)表示未检测到
                 int breathingRate = obj.getInt(SmartCockpitProfile.BREATHING_RATE);
-                //压力指数 0:正常, SmartCockpitProfile.DEFAULT_NOT_DETECTED(-1)表示未检测到
+                //压力指数数值, SmartCockpitProfile.DEFAULT_NOT_DETECTED(-1)表示未检测到
                 int pressureIndex = obj.getInt(SmartCockpitProfile.PRESSURE_INDEX);
-                //疲劳指数 0:正常, SmartCockpitProfile.DEFAULT_NOT_DETECTED(-1)表示未检测到
+                //疲劳指数数值, SmartCockpitProfile.DEFAULT_NOT_DETECTED(-1)表示未检测到
                 int fatigueIndex = obj.getInt(SmartCockpitProfile.FATIGUE_INDEX);
-                //血管弹性程度 0：正常 1：偏硬, SmartCockpitProfile.DEFAULT_NOT_DETECTED(-1)表示未检测到
+                //血管弹性程度数值, SmartCockpitProfile.DEFAULT_NOT_DETECTED(-1)表示未检测到
                 int bloodVesselElasticity = obj.getInt(SmartCockpitProfile.BLOOD_VESSEL_ELASTICITY);
 
             } catch (JSONException e) {
