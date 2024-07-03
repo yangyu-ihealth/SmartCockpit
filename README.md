@@ -110,7 +110,34 @@ iHealthDevicesManager.getInstance().connectDevice(mDeviceMac, iHealthDevicesMana
 SmartCockpitControl mSmartCockpitControl = iHealthDevicesManager.getInstance().getSmartCockpitControl(mDeviceMac);
 ```
 
-### 8.设备状态上报
+### 8.设置测量模式
+```java
+SmartCockpitControl mSmartCockpitControl = iHealthDevicesManager.getInstance().getSmartCockpitControl(mDeviceMac);
+//停止测量
+mSmartCockpitControl.setMeasureMode(SmartCockpitProfile.MEASURE_MODE.STOP_MEASURE)
+//测量PPG
+mSmartCockpitControl.setMeasureMode(SmartCockpitProfile.MEASURE_MODE.MEASURE_PPG);
+//测量ECG
+mSmartCockpitControl.setMeasureMode(SmartCockpitProfile.MEASURE_MODE.MEASURE_ECG);
+
+private iHealthDevicesCallback miHealthDevicesCallback = new iHealthDevicesCallback() {
+    @Override
+    public void onDeviceNotify(String mac, String deviceType, String action, String message) {
+        if (SmartCockpitProfile.ACTION_SET_MEASURE_MODE.equals(action)) {
+            try {
+                JSONObject obj = new JSONObject(message);
+                //当前测量模式(0:停止测量，1:测量PPG，2:测量ECG)
+                int measureMode = obj.getInt(SmartCockpitProfile.CURRENT_MEASURE_MODE);
+            
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    } 
+}
+```
+
+### 9.设备状态上报
 ```java
 private iHealthDevicesCallback miHealthDevicesCallback = new iHealthDevicesCallback() {
     @Override
@@ -130,7 +157,7 @@ private iHealthDevicesCallback miHealthDevicesCallback = new iHealthDevicesCallb
 }
 ```
 
-### 9.设备主动上报实时测量数据
+### 10.设备主动上报PPG实时测量数据
 ```java
 private iHealthDevicesCallback miHealthDevicesCallback = new iHealthDevicesCallback() {
     @Override
@@ -162,6 +189,33 @@ private iHealthDevicesCallback miHealthDevicesCallback = new iHealthDevicesCallb
                 int fatigueIndex = obj.getInt(SmartCockpitProfile.FATIGUE_INDEX);
                 //血管弹性程度数值, SmartCockpitProfile.DEFAULT_NOT_DETECTED(-1)表示未检测到
                 int bloodVesselElasticity = obj.getInt(SmartCockpitProfile.BLOOD_VESSEL_ELASTICITY);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    } 
+};
+```
+
+### 11.设备主动上报ECG实时测量数据
+```java
+private iHealthDevicesCallback miHealthDevicesCallback = new iHealthDevicesCallback() {
+    @Override
+    public void onDeviceNotify(String mac, String deviceType, String action, String message) {
+        if (SmartCockpitProfile.ACTION_REAL_TIME_ECG_DATA.equals(action)) {
+            try {
+                JSONObject obj = new JSONObject(message);
+                //包序号
+                int packageIndex = obj.getInt(SmartCockpitProfile.PACKAGE_INDEX);
+                //ECG数据个数
+                int ecgDataCount = obj.getInt(SmartCockpitProfile.ECG_DATA_COUNT);
+                //ECG数据数组
+                JSONArray ecgArray = obj.getJSONArray(SmartCockpitProfile.ECG_DATA_ARRAY);
+                for (int i = 0; i < ecgArray.length(); i++) {
+                        //循环获取每一个ecg点数据
+                        int ecgData = ecgArray.getInt(i);
+                    }
 
             } catch (JSONException e) {
                 e.printStackTrace();
